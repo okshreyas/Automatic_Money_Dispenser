@@ -3,8 +3,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-class def {public static int aid1, amnt,actotr,actmon;
-    public static String an1;
+class Definition {public static int AccountId1, Amount, AccToTransfer, AccountMoney;
+    public static String AccName1;
     public static String url = "jdbc:ucanaccess://ac.accdb";
     public static JTextField TextBox2 = new JTextField();
     public static JButton B1 = new JButton("1");

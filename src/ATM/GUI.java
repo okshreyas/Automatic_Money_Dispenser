@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 
-import static ATM.def.*;
+import static ATM.Definition.*;
 import static ATM.Login.*;
 import static java.lang.System.out;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
@@ -19,7 +19,7 @@ class GUI {
     static JButton Home = new JButton("HOME");
     public float DeductedAmount;
     JFrame MainFrame = new JFrame("ATM Machine");
-    float remcash = Money;
+    float RemainingCash = Money;
     float wcash = Money;
 
     String tran = "";
@@ -49,16 +49,16 @@ class GUI {
 
 
 
-        JLabel pl1 = new JLabel("WELCOME");
-        pl1.setForeground(new Color(0x0803A0));
-        pl1.setHorizontalAlignment((int) JFrame.CENTER_ALIGNMENT);
-        pl1.setFont(Font1);
+        //JLabel pl1 = new JLabel("WELCOME");
+        //pl1.setForeground(new Color(0x0803A0));
+        //pl1.setHorizontalAlignment((int) JFrame.CENTER_ALIGNMENT);
+        //pl1.setFont(Font1);
         PanelP1.setVisible(false);
         PanelP2.setVisible(true);
         Panel1.setVisible(true);
         Panel1.setLayout(null);
 
-//Panels
+        //Panels
 
         JPanel title = new JPanel(); //Title
         title.setBackground(new Color(0x4949AA));
@@ -68,7 +68,7 @@ class GUI {
         PanelP1.setBackground(new Color(0xE71F1F));
         PanelP1.setBounds(50, 50, 600, 150);
         PanelP1.setLayout(new BorderLayout());
-        PanelP1.add(pl1);
+        //PanelP1.add(pl1);
         PanelP1.add(TextBox2);
 
 
@@ -80,8 +80,8 @@ class GUI {
         transfer.addActionListener(e -> {
             try {
                 transfer();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException throwable) {
+                throwable.printStackTrace();
             }
         });
 
@@ -113,7 +113,7 @@ class GUI {
                 "CONSOLAS", Font.BOLD, 18)));
         JOptionPane.showMessageDialog(MainFrame, "Welcome..\n"+ Details);
         TextBox1.setText("For Start ->press 'HOME' button");
-      TextBox1.setForeground(Color.white);
+        TextBox1.setForeground(Color.white);
         Home.addActionListener(e -> MainFrame.getContentPane().invalidate());
         focus();
         p3butns(Panel3);
@@ -291,11 +291,11 @@ class GUI {
         BillPay.setBounds(100, 100, 200, 100);
         Transfer.setBounds(400, 250, 200, 100);
         Withdraw.setFont(Font4);
-        Withdraw.addActionListener(e -> wid());
+        Withdraw.addActionListener(e -> Withdraw());
         Statement.setFont(Font4);
         Statement.addActionListener(e -> {
             try {
-                stmt();
+                Statement();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -319,29 +319,28 @@ class GUI {
 
     }
 
-    void stmt() throws SQLException {
+    void Statement() throws SQLException {
         GetStatement.dispose();
         MainFrame.setSize(700, 500);
         Panel3.setVisible(false);
         Panel2.setVisible(true);
         Panel2.setBorder(BorderType1);
-        JTextPane stm = new JTextPane();
-        stm.setFont(new Font("Courier New", Font.BOLD, 25));
-        stm.setText("" +
-                "*****************************\n" +
+        JTextPane Statement = new JTextPane();
+        Statement.setFont(new Font("Courier New", Font.BOLD, 25));
+        Statement.setText( "*****************************\n" +
                 "\t-BANK OF ICCS-\n" +
                 "****************************\n" +
                 "\tAcc No.: xxxxxxxx" + AccountNumber + "\n" +
                 "\tAcc Type : " + AccountType +
-                "\n\tName : " + AccountName + "" +
+                "\n\tName : " + AccountName +
                 "\n\tMoney : " + Money + "/-" + "\n\tDate : " +
                 LocalDate.now() + "\n\tTime : "
                 + LocalTime.now() + "\n" + "-------------------------------\n" + tran + "\n" +
                 "\n\tHave A nice Day...!\n\n\n" + "\n\tFor any Enquiries\n\tToll free No: 1000 200 800" +
-                "\n****************************\n");
-        stm.setEditable(false);
-        stm.setBounds(0, 0, 500, 1200);
-        GetStatement.add(stm);
+                "\n****************************\n" );
+        Statement.setEditable(false);
+        Statement.setBounds(0, 0, 500, 1200);
+        GetStatement.add(Statement);
         GetStatement.setSize(500, 900);
         GetStatement.setResizable(false);
         GetStatement.setLayout(null);
@@ -437,7 +436,7 @@ class GUI {
         pay.addActionListener(e -> {
             if (Money > Amount) {
                 Money = Money - Amount;
-                wcash = remcash;
+                wcash = RemainingCash;
                 JOptionPane.showMessageDialog(MainFrame, "Paid Successfully...!");
                 x.setVisible(false);
                 xx.setVisible(false);
@@ -485,7 +484,7 @@ class GUI {
 
     }
 
-    void wid() {
+    void Withdraw() {
 
 
         GetAmount.setVisible(true);
@@ -493,11 +492,11 @@ class GUI {
         PanelP1.setVisible(false);
         PanelP2.setVisible(false);
 
-        JLabel hd = new JLabel("Withdraw Money");
-        hd.setFont(Font1);
-        hd.setHorizontalAlignment((int) JFrame.CENTER_ALIGNMENT);
-        hd.setVerticalAlignment((int) JFrame.CENTER_ALIGNMENT);
-        hd.setForeground(Color.white);
+        JLabel LabelW = new JLabel("Withdraw Money");
+        LabelW.setFont(Font1);
+        LabelW.setHorizontalAlignment((int) JFrame.CENTER_ALIGNMENT);
+        LabelW.setVerticalAlignment((int) JFrame.CENTER_ALIGNMENT);
+        LabelW.setForeground(Color.white);
 
         JPanel MainBody = new JPanel();
         MainBody.setBackground(new Color(0xC783FF));
@@ -515,13 +514,13 @@ class GUI {
         JButton CancelButton = new JButton("Cancel");
         CancelButton.setSize(100, 100);
         CancelButton.setBounds(350, 250, 200, 60);
-        JButton w3 = new JButton("collected");
-        w3.setSize(100, 100);
-        w3.setBounds(350, 300, 200, 60);
-        w3.setVisible(false);
+        JButton Confirmed = new JButton("collected");
+        Confirmed.setSize(100, 100);
+        Confirmed.setBounds(350, 300, 200, 60);
+        Confirmed.setVisible(false);
         ConfirmButton.setFont(Font3);
         CancelButton.setFont(Font3);
-        //w3.setFont(f3);
+        Confirmed.setFont(Font3);
 
 
         JLabel Message2 = new JLabel();
@@ -543,55 +542,55 @@ class GUI {
             } else if (DeductedAmount <= Money) {
                 Money = (int) (Money - DeductedAmount);
                 Message = "Collect Your Cash Rs : " + DeductedAmount + "/-";
-                w3.setVisible(true);
-                wcash = remcash;
+                Confirmed.setVisible(true);
+                wcash = RemainingCash;
                 Amount.setVisible(false);
                 ConfirmButton.setVisible(false);
                 CancelButton.setVisible(false);
                 GetAmountLabel.setVisible(false);
                 tran = (LocalDateTime.now()) + "\n Withdraw Cash Rs." + DeductedAmount + "/-" + "\n" + "-------------------------------\n" + tran;
                 try {
-                    stmt();
+                    Statement();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
                 GetStatement.setDefaultCloseOperation(EXIT_ON_CLOSE);
                 Message2.setText("Thank you Come Again...!");
-                w3.setText("exit");
-                w3.addActionListener(e1 -> System.exit(0));
+                Confirmed.setText("exit");
+                Confirmed.addActionListener(e1 -> System.exit(0));
             } else {
                 JOptionPane.showMessageDialog(MainFrame, "Insufficient Amount");
             }});
 
         CancelButton.addActionListener(e -> {
             Panel1.setVisible(true);
-            MainBody.remove(ConfirmButton);
-            MainBody.remove(CancelButton);
-            MainBody.remove(w3);
+            for (JButton jButton : Arrays.asList( ConfirmButton, CancelButton, Confirmed )) {
+                MainBody.remove( jButton );
+            }
             MainBody.remove(Message2);
             MainBody.remove(Amount);
             MainBody.remove(GetAmountLabel);
             JOptionPane.showMessageDialog(MainFrame, "Cancelled..!");
         });
 
-        w3.addActionListener(e -> {
+        Confirmed.addActionListener(e -> {
             Panel3.setVisible(true);
             tran = (LocalDateTime.now()) + "\n Withdraw Cash Rs." + DeductedAmount + "/-" + "\n" + "-------------------------------\n" + tran;
             try {
-                stmt();
+                Statement();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
             Message2.setText("Thank you Come Again...!");
-            w3.setText("exit");
-            w3.addActionListener(e1 -> System.exit(0)); });
+            Confirmed.setText("exit");
+            Confirmed.addActionListener(e1 -> System.exit(0)); });
 
         MainBody.add(GetAmountLabel);
         MainBody.add(Amount);
-        MainBody.add(hd);
+        MainBody.add(LabelW);
         MainBody.add(ConfirmButton);
         MainBody.add(CancelButton);
-        MainBody.add(w3);
+        MainBody.add(Confirmed);
         MainBody.add(Message2);
         MainFrame.add(MainBody);
 
@@ -627,11 +626,11 @@ class GUI {
                GetAccNo.setForeground(Color.white);
                GetAccNo.setBounds(100, 70, 300, 100);
                GetAccNo.setFont(Font3);
-       JLabel AccNumberToTransfer = new JLabel();
-       AccNumberToTransfer.setForeground(Color.white);
-       AccNumberToTransfer.setBounds(70, 20, 500,100);
-       AccNumberToTransfer.setFont(Font3);
-       AccNumberToTransfer.setVisible(true);
+                JLabel AccNumberToTransfer = new JLabel();
+                AccNumberToTransfer.setForeground(Color.white);
+                AccNumberToTransfer.setBounds(70, 20, 500,100);
+                AccNumberToTransfer.setFont(Font3);
+                AccNumberToTransfer.setVisible(true);
 
                JTextField GetAccNumber = new JTextField();
                GetAccNumber.setFont(Font3);
@@ -643,28 +642,28 @@ class GUI {
                GetAccNumber2.setBounds(420, 110, 170, 30);
 
                Confirm.addActionListener(e -> {
-                   actotr = Integer.parseInt(GetAccNumber.getText());
+                   AccToTransfer = Integer.parseInt(GetAccNumber.getText());
                    Confirm.addActionListener(e3 -> {GetAccNo.setText("Amount : ");
                        GetAccNumber.setVisible(false);
-                       System.out.println(actotr);
+                       System.out.println( AccToTransfer );
                        try {
                            Connection con = DriverManager.getConnection(url);
                            Statement st = con.createStatement();
-                           ResultSet rs = st.executeQuery("select * from Acc where AccountID=" + actotr);
+                           ResultSet rs = st.executeQuery("select * from Acc where AccountID=" + AccToTransfer );
                            while (rs.next()) {
                                if (rs != null && GetAccNumber.getText() != null) {
                                    out.println(Login.AccountNumber);
                                    out.println(rs.getString("name") + " " + rs.getInt("acid") + " " + rs.getString("atype"));
-                                   aid1 = rs.getInt("acid");
-                                   an1 = rs.getString("name");
-                                   actmon = Integer.parseInt(rs.getString("acmoney"));
-                                   out.println(actmon);
+                                   AccountId1 = rs.getInt("acid");
+                                   AccName1 = rs.getString("name");
+                                   AccountMoney = Integer.parseInt(rs.getString("acmoney"));
+                                   out.println( AccountMoney );
 
-AccNumberToTransfer.setText("Transfer Money to : "+an1);
+                                   AccNumberToTransfer.setText("Transfer Money to : "+ AccName1 );
                                    Confirm.addActionListener(e1 -> {
-                                       amnt = Integer.parseInt(GetAccNumber2.getText());
-if(amnt<= Money){
-                                       int result = (Money - amnt);
+                                       Definition.Amount = Integer.parseInt(GetAccNumber2.getText());
+                                            if(Definition.Amount <= Money){
+                                       int result = (Money - Definition.Amount);
                                        try {
                                            Connection conn = DriverManager.getConnection(url);
                                            Statement stmt = conn.createStatement();
@@ -682,8 +681,8 @@ if(amnt<= Money){
                                            Connection conn = DriverManager.getConnection(url);
                                            Statement stmt = conn.createStatement();
                                            {
-                                               stmt.executeUpdate("UPDATE Acc SET acmoney = acmoney+" + amnt + " WHERE acid = " + actotr);
-                                               ResultSet rss = stmt.executeQuery("select * from Acc where acid = " + actotr);
+                                               stmt.executeUpdate("UPDATE Acc SET acmoney = acmoney+" + Definition.Amount + " WHERE acid = " + AccToTransfer );
+                                               ResultSet rss = stmt.executeQuery("select * from Acc where acid = " + AccToTransfer );
                                                while (rss.next()) {
                                                }
                                            }
@@ -693,7 +692,7 @@ if(amnt<= Money){
                                        Confirm.setVisible(false);
                                        GetAccNo.setVisible(false);
                                        GetAccNumber2.setVisible(false);
-                                JOptionPane.showMessageDialog(MainFrame, "Transeferred Rs."+amnt+"/- From "+ AccountName +" TO "+ an1);
+                                JOptionPane.showMessageDialog(MainFrame, "Transeferred Rs."+ Definition.Amount +"/- From "+ AccountName +" TO "+ AccName1 );
                                        Cancel.setText("Exit");
                                    }
                                     else{ JOptionPane.showMessageDialog(MainFrame, "Insufficient Funds...!");
@@ -709,7 +708,8 @@ if(amnt<= Money){
                        }
                    } );
                } );
-       //TransferWindow.add(res);
+
+
                TransferWindow.add(GetAccNumber);
                TransferWindow.add(GetAccNo);
                TransferWindow.add(AccNumberToTransfer);

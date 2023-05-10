@@ -12,15 +12,15 @@ public class Login {
     public static JFrame MainFrame2 = new JFrame("NOWHERE BANK");
     public static boolean HHH;
     Login() {
-        JLabel res = new JLabel("");
+        JLabel Comment = new JLabel("");
 
-        JTextField a1 = new JTextField("");
-        GUI r = new GUI();
-        r.MainFrame.setVisible(false);
-        Font f4 = new Font("Courier New", Font.PLAIN, 20);
-        Font fe = new Font("Arial Black", Font.BOLD, 30);
-        Font f2 = new Font("Courier New", Font.BOLD, 25);
-        Font f3 = new Font("Courier New", Font.BOLD, 20);
+        JTextField GetAccID = new JTextField("");
+        GUI GUI = new GUI();
+        GUI.MainFrame.setVisible(false);
+        Font Font1 = new Font("Arial Black", Font.BOLD, 30);
+        Font Font2 = new Font("Courier New", Font.BOLD, 25);
+        Font Font3 = new Font("Courier New", Font.BOLD, 20);
+        Font Font4 = new Font("Courier New", Font.PLAIN,20);
 
         JPanel Panel11 = new JPanel();
         JPanel Panel12 = new JPanel();
@@ -28,34 +28,34 @@ public class Login {
         Panel11.setLayout(null);
         Panel11.setBackground(new Color(0x4949AA));
         Panel12.setBackground(new Color(0x070734));
-        //Panel11.setSize(400,400);
-        JLabel Acc = new JLabel("Account : ");
-        Acc.setBounds(100, 20, 200, 100);
-        Acc.setFont(f2);
-        Acc.setForeground(Color.white);
 
-        JLabel passe = new JLabel("Password : ");
-        passe.setBounds(100, 100, 300, 100);
-        passe.setFont(f2);
-        passe.setForeground(Color.white);
+       JLabel Account = new JLabel("Account : ");
+        Account.setBounds(100, 20, 200, 100);
+        Account.setFont(Font2);
+        Account.setForeground(Color.white);
 
-        res.setBounds(20, 240, 400, 100);
-        res.setFont(f4);
-        res.setForeground(Color.RED);
-        a1.setFont(f2);
-        a1.setBounds(300, 60, 170, 30);
+        JLabel Password = new JLabel("Password : ");
+        Password.setBounds(100, 100, 300, 100);
+        Password.setFont(Font2);
+        Password.setForeground(Color.white);
 
-        JTextField p1 = new JTextField("");
-        p1.setFont(f2);
-        p1.setBounds(300, 130, 170, 30);
+        Comment.setBounds(20, 240, 400, 100);
+        Comment.setFont(Font4);
+        Comment.setForeground(Color.RED);
+        GetAccID.setFont(Font2);
+        GetAccID.setBounds(300, 60, 170, 30);
 
-        JButton jb = new JButton("LOGIN");
-        jb.setFocusPainted(false);
-        jb.setBounds(90, 230, 200, 40);
-        jb.setFont(f3);
-        passe.setVisible(false);
-        p1.setVisible(false);
-        jb.addActionListener(e -> {a = (a1.getText().trim());
+        JTextField Getinput = new JTextField("");
+        Getinput.setFont(Font2);
+        Getinput.setBounds(300, 130, 170, 30);
+
+        JButton LoginButton = new JButton("LOGIN");
+        LoginButton.setFocusPainted(false);
+        LoginButton.setBounds(90, 230, 200, 40);
+        LoginButton.setFont(Font3);
+        Password.setVisible(false);
+        Getinput.setVisible(false);
+        LoginButton.addActionListener(e -> {a = (GetAccID.getText().trim());
 
 
                 String url = "jdbc:ucanaccess://ac.accdb";
@@ -63,22 +63,20 @@ public class Login {
                     Connection con = DriverManager.getConnection(url);
                     Statement st=con.createStatement();
                     ResultSet rs=st.executeQuery("select pass from Acc where acid="+a);
-                    while (rs.next()){if(a1.getText()!=null && rs!=null){passe.setVisible(true);}
-                        int ppe=rs.getInt("pass");
-                        out.println(ppe);
-                        passe.setVisible(true);
-                        p1.setVisible(true);
-                                //acname=rs.getString("name");
-                                //actype=rs.getString("atype");
+                    while (rs.next()){if(GetAccID.getText()!=null && rs!=null){Password.setVisible(true);}
+                        int PasswordCheck=rs.getInt("pass");
+                        out.println(PasswordCheck);
+                        Password.setVisible(true);
+                        Getinput.setVisible(true);
 
                         try {
-                             pt= Integer.parseInt(p1.getText());
+                             pt= Integer.parseInt(Getinput.getText());
 
-                            if(ppe==pt){
+                            if(PasswordCheck==pt){
                                 System.out.println("Okkk..!");
                                 HHH=true;
                                 GUI L=new GUI();
-                                passe.setVisible(false);
+                                Password.setVisible(false);
                                 try {
 
                                     rs = st.executeQuery("select * from Acc where acid=" + a);
@@ -90,7 +88,7 @@ public class Login {
                Details =("ID : "+ AccountNumber +"\nName : "+ AccountName +"\nAccount Type : "+ AccountType +"\nMoney : "+ Money +"/-");
                                         out.println(Details);
                                         L.bn();
-                                        res.setText("Success..!");
+                                        Comment.setText("Success..!");
 
 
                                     }
@@ -101,7 +99,7 @@ public class Login {
                             }
                             else{
                                 System.out.println("Wrong password entered");
-                                res.setText("ENTER VALID PASSWORD");
+                                Comment.setText("ENTER VALID PASSWORD");
                             }
                         } catch(NumberFormatException ex){
                             System.err.println(" ");
@@ -116,22 +114,22 @@ public class Login {
         JButton Cancel = new JButton("CANCEL");
         Cancel.setFocusPainted(false);
         Cancel.setBounds(330, 230, 200, 40);
-        Cancel.setFont(f3);
+        Cancel.setFont(Font3);
         Cancel.addActionListener(e -> System.exit(0));
         Panel11.setBounds(0, 0, 600, 100);
         Panel12.setBounds(0, 100, 600, 600);
-        Panel12.add(Acc);
-        Panel12.add(passe);
-        Panel12.add(a1);
-        Panel12.add(p1);
-        Panel12.add(jb);
+        Panel12.add(Account);
+        Panel12.add(Password);
+        Panel12.add(GetAccID);
+        Panel12.add(Getinput);
+        Panel12.add(LoginButton);
         Panel12.add(Cancel);
-        JLabel lgn = new JLabel("Login");
-        lgn.setFont(fe);
-        lgn.setForeground(new Color(0xEEC113));
-        lgn.setBounds(250, 10, 300, 100);
-        Panel11.add(lgn);
-        Panel12.add(res);
+        JLabel Login = new JLabel("Login");
+        Login.setFont(Font1);
+        Login.setForeground(new Color(0xEEC113));
+        Login.setBounds(250, 10, 300, 100);
+        Panel11.add(Login);
+        Panel12.add(Comment);
 
 
         MainFrame2().setVisible(true);
@@ -141,7 +139,7 @@ public class Login {
         MainFrame2().add(Panel11);
         MainFrame2().add(Panel12);
         MainFrame2().setLayout(null);
-        SwingUtilities.getRootPane(jb).setDefaultButton(jb);
+        SwingUtilities.getRootPane(LoginButton).setDefaultButton(LoginButton);
 
 
     }
