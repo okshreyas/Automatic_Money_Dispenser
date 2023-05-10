@@ -24,8 +24,8 @@ class GUI {
 
     String tran = "";
 
-    private int amt;
-    private String billname;
+    private int Amount;
+    private String BillNumber;
 
 
     void bn() throws InterruptedException {
@@ -367,11 +367,11 @@ class GUI {
             try {
                 Connection con = DriverManager.getConnection(url);
                 Statement st=con.createStatement();
-                ResultSet rs=st.executeQuery("select * from Acc where acid="+ AccountNumber);
+                ResultSet rs=st.executeQuery("select * from Acc where AccountId="+ AccountNumber);
               while (rs.next()) {
-                  amt=rs.getInt("billpay");
-                   billname=rs.getString("billno");
-                           System.out.println(amt+billname);
+                  Amount =rs.getInt("Pay Bill");
+                   BillNumber =rs.getString("Bill Number");
+                           System.out.println(Amount + BillNumber);
 
                 }
                 }
@@ -407,14 +407,14 @@ class GUI {
         JLabel t2 = new JLabel("Amount : ");
         JLabel t1 = new JLabel("Bill No : ");
         JLabel nn=new JLabel("Name : "+ AccountName);
-        JLabel amtt = new JLabel(billname);
-        JLabel bil = new JLabel(amt +"/-");
+        JLabel amtt = new JLabel(BillNumber);
+        JLabel bil = new JLabel(Amount +"/-");
         JButton pay = new JButton("Pay");
         JButton cacel = new JButton("Cancel");
 
         bil.setFont(Font2);
         t1.setFont(Font2);
-            nn.setFont(Font2);
+        nn.setFont(Font2);
         amtt.setFont(Font2);
         t2.setFont(Font2);
         bil.setFont(Font2);
@@ -435,8 +435,8 @@ class GUI {
         cacel.setBorder(BorderType1);
 
         pay.addActionListener(e -> {
-            if (Money > amt) {
-                Money = Money - amt;
+            if (Money > Amount) {
+                Money = Money - Amount;
                 wcash = remcash;
                 JOptionPane.showMessageDialog(MainFrame, "Paid Successfully...!");
                 x.setVisible(false);
@@ -445,7 +445,7 @@ class GUI {
                 xx3.setVisible(false);
                 Panel3.setVisible(true);
                 Panel1.setVisible(true);
-                tran = (LocalDateTime.now()) + "\t Paid bill Rs."+amt+"/-" + "\n" + "-------------------------------\n" + tran;
+                tran = (LocalDateTime.now()) + "\t Paid bill Rs."+ Amount +"/-" + "\n" + "-------------------------------\n" + tran;
                 MainFrame.setSize(700, 1000);
             } else {
                 JOptionPane.showMessageDialog(MainFrame, "Insufficient Funds.!\n Please see Statement");
