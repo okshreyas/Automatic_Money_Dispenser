@@ -1,0 +1,48 @@
+package ATM;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+
+class def {public static int aid1, amnt,actotr,actmon;;
+    public static String an1,details;
+   public static String url = "jdbc:ucanaccess://ac.accdb";
+public static JTextField t2 = new JTextField();
+    public static JButton j1 = new JButton("1");
+    public static JButton j2 = new JButton("2");
+    public static  JButton j3 = new JButton("3");
+    public static JButton j4 = new JButton("4");
+    public static JButton j5 = new JButton("5");
+    public static JButton j6 = new JButton("6");
+    public static  JButton j7 = new JButton("7");
+    public static  JButton j8 = new JButton("8");
+    public static  JButton j9 = new JButton("9");
+    public static JButton j0 = new JButton("0");
+    public static JButton j00 = new JButton("00");
+    public static  JButton j10 = new JButton(".");
+    public static JButton exit = new JButton("EXIT");
+    public static JButton clear = new JButton("CLEAR");
+    public static JButton enter = new JButton("ENTER");
+    public static  JButton z1 = new JButton("Withdraw");
+    public static  JButton z2 = new JButton("Statement");
+    public static JButton z3 = new JButton("Pay bills");
+    public static JButton z4 = new JButton("Exit");
+    public static JFrame sttmt = new JFrame("Statement");
+    public static JPanel p2 = new JPanel();
+    public static JPanel pp1 = new JPanel();
+    public static  JPanel pp2 = new JPanel();
+    public static JPanel p1 = new JPanel();
+    public static  JPanel p3 = new JPanel();
+    public static JPanel p4 = new JPanel();
+    public static JLabel bb = new JLabel("Enter Amount : ");
+    public static Font f1 = new Font("Arial Black", Font.BOLD, 28);
+    public static Font f2 = new Font("Copperplate Gothic", Font.BOLD, 20);
+    public static Font f3 = new Font("Courier New", Font.BOLD, 25);
+    public static  Font f4 = new Font("Copperplate Gothic", Font.BOLD, 30);
+    public static JLabel ttl = new JLabel("\tAutomatic Money Dispenser");
+    public static JTextField t1 = new JTextField();
+    public static Border bd = BorderFactory.createRaisedBevelBorder();
+    public static Border bd2 = BorderFactory.createLineBorder(new Color(0xFFD14A), 5, true);
+    public static String mess;
+    public static JButton transfer=new JButton("transfer");
+    public static JButton cacel = new JButton("Cancel");}

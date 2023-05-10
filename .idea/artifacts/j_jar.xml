@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="j:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/j_jar</output-path>
+    <root id="archive" name="j.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$USER_HOME$/Desktop/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="j" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/UCanAccess-5.0.1.bin/jackcess-3.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/UCanAccess-5.0.1.bin/commons-lang3-3.8.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/UCanAccess-5.0.1.bin/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/UCanAccess-5.0.1.bin/hsqldb-2.5.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/UCanAccess-5.0.1.bin/ucanaccess-5.0.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
