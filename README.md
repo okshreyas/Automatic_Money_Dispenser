@@ -1,5 +1,7 @@
 # Automatic_Money_Dispenser
 
+![Picture1](https://github.com/okshreyas/Automatic_Money_Dispenser/assets/85001364/cff9a57f-3fcd-476f-bb9c-cf305372046e)
+
 
 **#Project Title: Automatic Money Dispenser Software**
 
