@@ -606,71 +606,71 @@ class GUI {
 
 
                Panel1.setVisible(false);
-               JPanel trw = new JPanel();
-               trw.setLayout(null);
-               trw.setVisible(true);
-               trw.setBackground(new Color(0xFF0E0257, true));
-               trw.setBounds(0, 50, 700, 400);
-               JButton cnf = new JButton("CONFIRM");
-               cnf.setFocusPainted(false);
-               cnf.setBounds(90, 230, 200, 40);
-               cnf.setFont(Font3);
-               //cnf.addActionListener();
+               JPanel TransferWindow = new JPanel();
+               TransferWindow.setLayout(null);
+               TransferWindow.setVisible(true);
+               TransferWindow.setBackground(new Color(0xFF0E0257, true));
+               TransferWindow.setBounds(0, 50, 700, 400);
+               JButton Confirm = new JButton("CONFIRM");
+               Confirm.setFocusPainted(false);
+               Confirm.setBounds(90, 230, 200, 40);
+               Confirm.setFont(Font3);
+               //Confirm.addActionListener();
 
-               JButton cl = new JButton("CANCEL");
-               cl.setFocusPainted(false);
-               cl.setBounds(330, 230, 200, 40);
-               cl.setFont(Font3);
-               cl.addActionListener(e -> System.exit(0));
+               JButton Cancel = new JButton("CANCEL");
+               Cancel.setFocusPainted(false);
+               Cancel.setBounds(330, 230, 200, 40);
+               Cancel.setFont(Font3);
+               Cancel.addActionListener(e -> System.exit(0));
 
-               JLabel eac = new JLabel("Enter A/C No : ");
-               eac.setForeground(Color.white);
-               eac.setBounds(100, 70, 300, 100);
-               eac.setFont(Font3);
-       JLabel eac2 = new JLabel();
-       eac2.setForeground(Color.white);
-       eac2.setBounds(70, 20, 500,100);
-       eac2.setFont(Font3);
-       eac2.setVisible(true);
+               JLabel GetAccNo = new JLabel("Enter A/C No : ");
+               GetAccNo.setForeground(Color.white);
+               GetAccNo.setBounds(100, 70, 300, 100);
+               GetAccNo.setFont(Font3);
+       JLabel AccNumberToTransfer = new JLabel();
+       AccNumberToTransfer.setForeground(Color.white);
+       AccNumberToTransfer.setBounds(70, 20, 500,100);
+       AccNumberToTransfer.setFont(Font3);
+       AccNumberToTransfer.setVisible(true);
 
-               JTextField eactxt = new JTextField();
-               eactxt.setFont(Font3);
-               actions(eactxt);
-               eactxt.setBounds(420, 110, 170, 30);
-       JTextField eactxt2 = new JTextField();
-       eactxt2.setFont(Font3);
-       actions(eactxt2);
-       eactxt2.setBounds(420, 110, 170, 30);
+               JTextField GetAccNumber = new JTextField();
+               GetAccNumber.setFont(Font3);
+               actions(GetAccNumber);
+               GetAccNumber.setBounds(420, 110, 170, 30);
+               JTextField GetAccNumber2 = new JTextField();
+               GetAccNumber2.setFont(Font3);
+               actions(GetAccNumber2);
+               GetAccNumber2.setBounds(420, 110, 170, 30);
 
-               cnf.addActionListener(e -> {
-                   actotr = Integer.parseInt(eactxt.getText());
-                   cnf.addActionListener(e3 -> {eac.setText("Amount : ");
-                       eactxt.setVisible(false);
+               Confirm.addActionListener(e -> {
+                   actotr = Integer.parseInt(GetAccNumber.getText());
+                   Confirm.addActionListener(e3 -> {GetAccNo.setText("Amount : ");
+                       GetAccNumber.setVisible(false);
                        System.out.println(actotr);
                        try {
                            Connection con = DriverManager.getConnection(url);
                            Statement st = con.createStatement();
-                           ResultSet rs = st.executeQuery("select * from Acc where acid=" + actotr);
+                           ResultSet rs = st.executeQuery("select * from Acc where AccountID=" + actotr);
                            while (rs.next()) {
-                               if (rs != null && eactxt.getText() != null) {
-                                   out.println(AccountNumber);
+                               if (rs != null && GetAccNumber.getText() != null) {
+                                   out.println(Login.AccountNumber);
                                    out.println(rs.getString("name") + " " + rs.getInt("acid") + " " + rs.getString("atype"));
                                    aid1 = rs.getInt("acid");
                                    an1 = rs.getString("name");
                                    actmon = Integer.parseInt(rs.getString("acmoney"));
                                    out.println(actmon);
 
-eac2.setText("Transfer Money to : "+an1);
-                                   cnf.addActionListener(e1 -> {
-                                       amnt = Integer.parseInt(eactxt2.getText());
+AccNumberToTransfer.setText("Transfer Money to : "+an1);
+                                   Confirm.addActionListener(e1 -> {
+                                       amnt = Integer.parseInt(GetAccNumber2.getText());
 if(amnt<= Money){
                                        int result = (Money - amnt);
                                        try {
                                            Connection conn = DriverManager.getConnection(url);
                                            Statement stmt = conn.createStatement();
                                            {
-                                               stmt.executeUpdate("UPDATE Acc SET acmoney = " + result + " WHERE acid = " + AccountNumber);
-                                               ResultSet rss = stmt.executeQuery("select * from Acc where acid = " + AccountNumber);
+                                               stmt.executeUpdate("UPDATE Acc SET acmoney = " + result + " WHERE acid = " + Login.AccountNumber);
+                                               ResultSet rss = stmt.executeQuery("select * from Acc where acid = " + Login.AccountNumber);
                                                while (rss.next()) {
                                                }
                                            }
@@ -690,11 +690,11 @@ if(amnt<= Money){
                                        } catch (SQLException i) {
                                            i.printStackTrace();
                                        }
-                                       cnf.setVisible(false);
-                                       eac.setVisible(false);
-                                       eactxt2.setVisible(false);
+                                       Confirm.setVisible(false);
+                                       GetAccNo.setVisible(false);
+                                       GetAccNumber2.setVisible(false);
                                 JOptionPane.showMessageDialog(MainFrame, "Transeferred Rs."+amnt+"/- From "+ AccountName +" TO "+ an1);
-                                       cl.setText("Exit");
+                                       Cancel.setText("Exit");
                                    }
                                     else{ JOptionPane.showMessageDialog(MainFrame, "Insufficient Funds...!");
 }
@@ -709,14 +709,14 @@ if(amnt<= Money){
                        }
                    });
                });
-       //trw.add(res);
-               trw.add(eactxt);
-               trw.add(eac);
-       trw.add(eac2);
-               trw.add(cl);
-               trw.add(cnf);
-               trw.add(eactxt2);
-               MainFrame.add(trw);
+       //TransferWindow.add(res);
+               TransferWindow.add(GetAccNumber);
+               TransferWindow.add(GetAccNo);
+       TransferWindow.add(AccNumberToTransfer);
+               TransferWindow.add(Cancel);
+               TransferWindow.add(Confirm);
+               TransferWindow.add(GetAccNumber2);
+               MainFrame.add(TransferWindow);
 
    }
 
