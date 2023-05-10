@@ -4,32 +4,31 @@ package ATM;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
-
 import static java.lang.System.out;
 
-public class login {
-    static String acname,actype,a,detail;
-    static int acno,money,pt;
-    public static JFrame jf = new JFrame("NOWHERE BANK");
+public class Login {
+    static String AccountName, AccountType,a, Details;
+    static int AccountNumber, Money,pt;
+    public static JFrame MainFrame2 = new JFrame("NOWHERE BANK");
     public static boolean HHH;
-    login() {
+    Login() {
         JLabel res = new JLabel("");
 
         JTextField a1 = new JTextField("");
         GUI r = new GUI();
-        r.frame.setVisible(false);
+        r.MainFrame.setVisible(false);
         Font f4 = new Font("Courier New", Font.PLAIN, 20);
         Font fe = new Font("Arial Black", Font.BOLD, 30);
         Font f2 = new Font("Courier New", Font.BOLD, 25);
         Font f3 = new Font("Courier New", Font.BOLD, 20);
 
-        JPanel j11 = new JPanel();
-        JPanel j12 = new JPanel();
-        j12.setLayout(null);
-        j11.setLayout(null);
-        j11.setBackground(new Color(0x4949AA));
-        j12.setBackground(new Color(0x070734));
-        //j11.setSize(400,400);
+        JPanel Panel11 = new JPanel();
+        JPanel Panel12 = new JPanel();
+        Panel12.setLayout(null);
+        Panel11.setLayout(null);
+        Panel11.setBackground(new Color(0x4949AA));
+        Panel12.setBackground(new Color(0x070734));
+        //Panel11.setSize(400,400);
         JLabel Acc = new JLabel("Account : ");
         Acc.setBounds(100, 20, 200, 100);
         Acc.setFont(f2);
@@ -84,12 +83,12 @@ public class login {
 
                                     rs = st.executeQuery("select * from Acc where acid=" + a);
                                     while (rs.next()) {
-                                        acname = rs.getString("name");
-                                        actype= rs.getString("atype");
-                                        money=rs.getInt("acmoney");
-                                        acno=rs.getInt("acid");
-               detail=("ID : "+acno+"\nName : "+acname+"\nAccount Type : "+actype+"\nMoney : "+money+"/-");
-                                        out.println(detail);
+                                        AccountName = rs.getString("name");
+                                        AccountType = rs.getString("atype");
+                                        Money =rs.getInt("acmoney");
+                                        AccountNumber =rs.getInt("acid");
+               Details =("ID : "+ AccountNumber +"\nName : "+ AccountName +"\nAccount Type : "+ AccountType +"\nMoney : "+ Money +"/-");
+                                        out.println(Details);
                                         L.bn();
                                         res.setText("Success..!");
 
@@ -114,40 +113,40 @@ public class login {
 });
 
 
-        JButton cl = new JButton("CANCEL");
-        cl.setFocusPainted(false);
-        cl.setBounds(330, 230, 200, 40);
-        cl.setFont(f3);
-        cl.addActionListener(e -> System.exit(0));
-        j11.setBounds(0, 0, 600, 100);
-        j12.setBounds(0, 100, 600, 600);
-        j12.add(Acc);
-        j12.add(passe);
-        j12.add(a1);
-        j12.add(p1);
-        j12.add(jb);
-        j12.add(cl);
+        JButton Cancel = new JButton("CANCEL");
+        Cancel.setFocusPainted(false);
+        Cancel.setBounds(330, 230, 200, 40);
+        Cancel.setFont(f3);
+        Cancel.addActionListener(e -> System.exit(0));
+        Panel11.setBounds(0, 0, 600, 100);
+        Panel12.setBounds(0, 100, 600, 600);
+        Panel12.add(Acc);
+        Panel12.add(passe);
+        Panel12.add(a1);
+        Panel12.add(p1);
+        Panel12.add(jb);
+        Panel12.add(Cancel);
         JLabel lgn = new JLabel("Login");
         lgn.setFont(fe);
         lgn.setForeground(new Color(0xEEC113));
         lgn.setBounds(250, 10, 300, 100);
-        j11.add(lgn);
-        j12.add(res);
+        Panel11.add(lgn);
+        Panel12.add(res);
 
 
-        getJf().setVisible(true);
-        getJf().setSize(600, 500);
-        getJf().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        getJf().setResizable(false);
-        getJf().add(j11);
-        getJf().add(j12);
-        getJf().setLayout(null);
+        MainFrame2().setVisible(true);
+        MainFrame2().setSize(600, 500);
+        MainFrame2().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        MainFrame2().setResizable(false);
+        MainFrame2().add(Panel11);
+        MainFrame2().add(Panel12);
+        MainFrame2().setLayout(null);
         SwingUtilities.getRootPane(jb).setDefaultButton(jb);
 
 
     }
 
-    public JFrame getJf() {
-        return jf;
+    public JFrame MainFrame2() {
+        return MainFrame2;
     }
 }
