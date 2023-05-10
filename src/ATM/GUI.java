@@ -707,12 +707,12 @@ if(amnt<= Money){
                        } catch (SQLException sqlException) {
                            sqlException.printStackTrace();
                        }
-                   });
-               });
+                   } );
+               } );
        //TransferWindow.add(res);
                TransferWindow.add(GetAccNumber);
                TransferWindow.add(GetAccNo);
-       TransferWindow.add(AccNumberToTransfer);
+               TransferWindow.add(AccNumberToTransfer);
                TransferWindow.add(Cancel);
                TransferWindow.add(Confirm);
                TransferWindow.add(GetAccNumber2);
