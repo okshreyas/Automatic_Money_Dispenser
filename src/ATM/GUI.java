@@ -633,13 +633,13 @@ class GUI {
                 AccNumberToTransfer.setVisible(true);
 
                JTextField GetAccNumber = new JTextField();
-               GetAccNumber.setFont(Font3);
-               actions(GetAccNumber);
-               GetAccNumber.setBounds(420, 110, 170, 30);
                JTextField GetAccNumber2 = new JTextField();
+               GetAccNumber.setFont(Font3);
                GetAccNumber2.setFont(Font3);
-               actions(GetAccNumber2);
+               GetAccNumber.setBounds(420, 110, 170, 30);
                GetAccNumber2.setBounds(420, 110, 170, 30);
+               actions(GetAccNumber);
+               actions(GetAccNumber2);
 
                Confirm.addActionListener(e -> {
                    AccToTransfer = Integer.parseInt(GetAccNumber.getText());
@@ -649,7 +649,7 @@ class GUI {
                        try {
                            Connection con = DriverManager.getConnection(url);
                            Statement st = con.createStatement();
-                           ResultSet rs = st.executeQuery("select * from Acc where AccountID=" + AccToTransfer );
+                           ResultSet rs = st.executeQuery("select * from Acc where acid=" + AccToTransfer );
                            while (rs.next()) {
                                if (rs != null && GetAccNumber.getText() != null) {
                                    out.println(Login.AccountNumber);
