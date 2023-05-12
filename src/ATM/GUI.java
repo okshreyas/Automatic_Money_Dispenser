@@ -49,10 +49,7 @@ class GUI {
 
 
 
-        //JLabel pl1 = new JLabel("WELCOME");
-        //pl1.setForeground(new Color(0x0803A0));
-        //pl1.setHorizontalAlignment((int) JFrame.CENTER_ALIGNMENT);
-        //pl1.setFont(Font1);
+
         PanelP1.setVisible(false);
         PanelP2.setVisible(true);
         Panel1.setVisible(true);
@@ -350,10 +347,10 @@ class GUI {
         try {
             Connection con = DriverManager.getConnection(url);
             Statement st=con.createStatement();
-            ResultSet rs=st.executeQuery("select * from Acc where acid="+ AccountNumber);
+            ResultSet rs=st.executeQuery("select * from Account where AccountID="+ AccountNumber);
             while(rs.next()) {
                 Statement st2 = con.createStatement();
-                st2.executeUpdate("UPDATE Acc SET acmoney ="+ Money +" WHERE acid ="+ AccountNumber);
+                st2.executeUpdate("UPDATE Account SET AccMoney ="+ Money +" WHERE AccountID ="+ AccountNumber);
         }}
                  catch (SQLException I) {I.printStackTrace();}
         }
@@ -366,9 +363,9 @@ class GUI {
             try {
                 Connection con = DriverManager.getConnection(url);
                 Statement st=con.createStatement();
-                ResultSet rs=st.executeQuery("select * from Acc where AccountId="+ AccountNumber);
+                ResultSet rs=st.executeQuery("select * from Account where AccountId="+ AccountNumber);
               while (rs.next()) {
-                  Amount =rs.getInt("Pay Bill");
+                  Amount =rs.getInt("Bills");
                    BillNumber =rs.getString("Bill Number");
                            System.out.println(Amount + BillNumber);
 
@@ -649,14 +646,14 @@ class GUI {
                        try {
                            Connection con = DriverManager.getConnection(url);
                            Statement st = con.createStatement();
-                           ResultSet rs = st.executeQuery("select * from Acc where acid=" + AccToTransfer );
+                           ResultSet rs = st.executeQuery("select * from Account where AccountID=" + AccToTransfer );
                            while (rs.next()) {
                                if (rs != null && GetAccNumber.getText() != null) {
                                    out.println(Login.AccountNumber);
-                                   out.println(rs.getString("name") + " " + rs.getInt("acid") + " " + rs.getString("atype"));
-                                   AccountId1 = rs.getInt("acid");
-                                   AccName1 = rs.getString("name");
-                                   AccountMoney = Integer.parseInt(rs.getString("acmoney"));
+                                   out.println(rs.getString("AccName") + " " + rs.getInt("AccountID") + " " + rs.getString("AccType"));
+                                   AccountId1 = rs.getInt("AccountID");
+                                   AccName1 = rs.getString("AccName");
+                                   AccountMoney = Integer.parseInt(rs.getString("AccMoney"));
                                    out.println( AccountMoney );
 
                                    AccNumberToTransfer.setText("Transfer Money to : "+ AccName1 );
@@ -668,8 +665,8 @@ class GUI {
                                            Connection conn = DriverManager.getConnection(url);
                                            Statement stmt = conn.createStatement();
                                            {
-                                               stmt.executeUpdate("UPDATE Acc SET acmoney = " + result + " WHERE acid = " + Login.AccountNumber);
-                                               ResultSet rss = stmt.executeQuery("select * from Acc where acid = " + Login.AccountNumber);
+                                               stmt.executeUpdate("UPDATE Account SET AccMoney = " + result + " WHERE AccountID = " + Login.AccountNumber);
+                                               ResultSet rss = stmt.executeQuery("select * from Account where AccountID = " + Login.AccountNumber);
                                                while (rss.next()) {
                                                }
                                            }
@@ -681,8 +678,8 @@ class GUI {
                                            Connection conn = DriverManager.getConnection(url);
                                            Statement stmt = conn.createStatement();
                                            {
-                                               stmt.executeUpdate("UPDATE Acc SET acmoney = acmoney+" + Definition.Amount + " WHERE acid = " + AccToTransfer );
-                                               ResultSet rss = stmt.executeQuery("select * from Acc where acid = " + AccToTransfer );
+                                               stmt.executeUpdate("UPDATE Account SET AccMoney = AccMoney+" + Definition.Amount + " WHERE AccountID = " + AccToTransfer );
+                                               ResultSet rss = stmt.executeQuery("select * from Account where AccountID = " + AccToTransfer );
                                                while (rss.next()) {
                                                }
                                            }

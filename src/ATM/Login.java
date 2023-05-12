@@ -62,7 +62,7 @@ public class Login {
                 try {
                     Connection con = DriverManager.getConnection(url);
                     Statement st=con.createStatement();
-                    ResultSet rs=st.executeQuery("select pass from Acc where acid="+a);
+                    ResultSet rs=st.executeQuery("select Password from Account where AccountID="+a);
                     while (rs.next()){if(GetAccID.getText()!=null && rs!=null){Password.setVisible(true);}
                         int PasswordCheck=rs.getInt("pass");
                         out.println(PasswordCheck);
@@ -79,7 +79,7 @@ public class Login {
                                 Password.setVisible(false);
                                 try {
 
-                                    rs = st.executeQuery("select * from Acc where acid=" + a);
+                                    rs = st.executeQuery("select * from Account where AccountID=" + a);
                                     while (rs.next()) {
                                         AccountName = rs.getString("name");
                                         AccountType = rs.getString("atype");
