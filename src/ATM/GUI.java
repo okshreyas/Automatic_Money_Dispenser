@@ -114,7 +114,7 @@ class GUI {
         Home.addActionListener(e -> MainFrame.getContentPane().invalidate());
         focus();
         p3butns(Panel3);
-        Home.addActionListener(e -> actype()
+        Home.addActionListener(e -> AccountType()
         );
         Panel4.setBackground(new Color(0x070734));
         Panel4.setBounds(700, 700, 500, 300);
@@ -159,7 +159,7 @@ class GUI {
         Clear.setFocusPainted(false);
     }
 
-    public void actype() {
+    public void AccountType() {
         Login.MainFrame2.setVisible(false);
         JButton SavingsAcc = new JButton("SAVINGS");//goes to database actype with user type
         JButton CurrentAcc = new JButton("CURRENT");//goes to database actype with user type
@@ -365,8 +365,8 @@ class GUI {
                 Statement st=con.createStatement();
                 ResultSet rs=st.executeQuery("select * from Account where AccountId="+ AccountNumber);
               while (rs.next()) {
-                  Amount =rs.getInt("Bills");
-                   BillNumber =rs.getString("Bill Number");
+                  Amount =rs.getInt("BillToPay");
+                   BillNumber =rs.getString("BillNumber");
                            System.out.println(Amount + BillNumber);
 
                 }

@@ -64,7 +64,7 @@ public class Login {
                     Statement st=con.createStatement();
                     ResultSet rs=st.executeQuery("select Password from Account where AccountID="+a);
                     while (rs.next()){if(GetAccID.getText()!=null && rs!=null){Password.setVisible(true);}
-                        int PasswordCheck=rs.getInt("pass");
+                        int PasswordCheck=rs.getInt("Password");
                         out.println(PasswordCheck);
                         Password.setVisible(true);
                         Getinput.setVisible(true);
@@ -81,10 +81,10 @@ public class Login {
 
                                     rs = st.executeQuery("select * from Account where AccountID=" + a);
                                     while (rs.next()) {
-                                        AccountName = rs.getString("name");
-                                        AccountType = rs.getString("atype");
-                                        Money =rs.getInt("acmoney");
-                                        AccountNumber =rs.getInt("acid");
+                                        AccountName = rs.getString("AccName");
+                                        AccountType = rs.getString("AccType");
+                                        Money =rs.getInt("AccMoney");
+                                        AccountNumber =rs.getInt("AccountId");
                Details =("ID : "+ AccountNumber +"\nName : "+ AccountName +"\nAccount Type : "+ AccountType +"\nMoney : "+ Money +"/-");
                                         out.println(Details);
                                         L.bn();
