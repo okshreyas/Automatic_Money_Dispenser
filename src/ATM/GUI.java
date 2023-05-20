@@ -22,7 +22,7 @@ class GUI {
     float RemainingCash = Money;
     float wcash = Money;
 
-    String tran = "";
+    String Transfer = "";
 
     private int Amount;
     private String BillNumber;
@@ -286,7 +286,7 @@ class GUI {
         Withdraw.setBounds(100, 250, 200, 100);
         Statement.setBounds(400, 100, 200, 100);
         BillPay.setBounds(100, 100, 200, 100);
-        Transfer.setBounds(400, 250, 200, 100);
+        Definition.Transfer.setBounds(400, 250, 200, 100);
         Withdraw.setFont(Font4);
         Withdraw.addActionListener(e -> Withdraw());
         Statement.setFont(Font4);
@@ -299,19 +299,19 @@ class GUI {
         });
         BillPay.setFont(Font4);
         BillPay.addActionListener(e -> bill());
-        Transfer.setText("transfer");
-        Transfer.addActionListener(e -> {
+        Definition.Transfer.setText("transfer");
+        Definition.Transfer.addActionListener( e -> {
             try {
                 transfer();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         });
-        Transfer.setFont(Font4);
+        Definition.Transfer.setFont(Font4);
         Panel1.add(Withdraw);
         Panel1.add(Statement);
         Panel1.add(BillPay);
-        Panel1.add(Transfer);
+        Panel1.add( Definition.Transfer );
 
 
     }
@@ -332,7 +332,7 @@ class GUI {
                 "\n\tName : " + AccountName +
                 "\n\tMoney : " + Money + "/-" + "\n\tDate : " +
                 LocalDate.now() + "\n\tTime : "
-                + LocalTime.now() + "\n" + "-------------------------------\n" + tran + "\n" +
+                + LocalTime.now() + "\n" + "-------------------------------\n" + Transfer + "\n" +
                 "\n\tHave A nice Day...!\n\n\n" + "\n\tFor any Enquiries\n\tToll free No: 1000 200 800" +
                 "\n****************************\n" );
         Statement.setEditable(false);
@@ -342,6 +342,7 @@ class GUI {
         GetStatement.setResizable(false);
         GetStatement.setLayout(null);
         GetStatement.setVisible(true);
+
 
 
         try {
@@ -400,37 +401,37 @@ class GUI {
         x.setBounds(50, 150, 450, 300);
         x.setBorder(BorderType2);
 
-        JLabel t2 = new JLabel("Amount : ");
-        JLabel t1 = new JLabel("Bill No : ");
-        JLabel nn=new JLabel("Name : "+ AccountName);
-        JLabel amtt = new JLabel(BillNumber);
-        JLabel bil = new JLabel(Amount +"/-");
-        JButton pay = new JButton("Pay");
-        JButton cacel = new JButton("Cancel");
+        JLabel SetAmount = new JLabel("Amount : ");
+        JLabel GetBillNumber = new JLabel("Bill No : ");
+        JLabel GetAccName=new JLabel("Name : "+ AccountName);
+        JLabel SetBillNumber = new JLabel(BillNumber);
+        JLabel GetAmount = new JLabel(Amount +"/-");
+        JButton PayButton = new JButton("Pay");
+        JButton CancelButton = new JButton("Cancel");
 
-        bil.setFont(Font2);
-        t1.setFont(Font2);
-        nn.setFont(Font2);
-        amtt.setFont(Font2);
-        t2.setFont(Font2);
-        bil.setFont(Font2);
-        pay.setFont(Font3);
-        cacel.setForeground(Color.white);
-        cacel.setFont(Font3);
+        GetAmount.setFont(Font2);
+        GetBillNumber.setFont(Font2);
+        GetAccName.setFont(Font2);
+        SetBillNumber.setFont(Font2);
+        SetAmount.setFont(Font2);
+        GetAmount.setFont(Font2);
+        PayButton.setFont(Font3);
+        CancelButton.setForeground(Color.white);
+        CancelButton.setFont(Font3);
 
-        t1.setForeground(Color.white);
-        nn.setForeground(Color.white);
-        t2.setForeground(Color.white);
-        amtt.setForeground(Color.white);
-        pay.setForeground(Color.ORANGE);
-        pay.setBackground(Color.BLUE);
-        pay.setBorder(BorderType1);
-        cacel.setBackground(Color.red);
-        pay.setForeground(Color.white);
-        bil.setForeground(Color.white);
-        cacel.setBorder(BorderType1);
+        GetBillNumber.setForeground(Color.white);
+        GetAccName.setForeground(Color.white);
+        SetAmount.setForeground(Color.white);
+        SetBillNumber.setForeground(Color.white);
+        PayButton.setForeground(Color.ORANGE);
+        PayButton.setBackground(Color.BLUE);
+        PayButton.setBorder(BorderType1);
+        CancelButton.setBackground(Color.red);
+        PayButton.setForeground(Color.white);
+        GetAmount.setForeground(Color.white);
+        CancelButton.setBorder(BorderType1);
 
-        pay.addActionListener(e -> {
+        PayButton.addActionListener(e -> {
             if (Money > Amount) {
                 Money = Money - Amount;
                 wcash = RemainingCash;
@@ -441,13 +442,13 @@ class GUI {
                 xx3.setVisible(false);
                 Panel3.setVisible(true);
                 Panel1.setVisible(true);
-                tran = (LocalDateTime.now()) + "\t Paid bill Rs."+ Amount +"/-" + "\n" + "-------------------------------\n" + tran;
+                Transfer = (LocalDateTime.now()) + "\t Paid bill Rs."+ Amount +"/-" + "\n" + "-------------------------------\n" + Transfer;
                 MainFrame.setSize(700, 1000);
             } else {
                 JOptionPane.showMessageDialog(MainFrame, "Insufficient Funds.!\n Please see Statement");
             }
         });
-        cacel.addActionListener(e -> {
+        CancelButton.addActionListener(e -> {
 
             JOptionPane.showMessageDialog(MainFrame, "cancelled operation");
             x.setVisible(false);
@@ -459,21 +460,21 @@ class GUI {
             Panel1.setVisible(true);
             MainFrame.setSize(700, 1000);
         });
-            nn.setBounds(100,0,400,100);
-        t1.setBounds(100, 50, 250, 100);
-        t2.setBounds(100, 100, 250, 100);
-        amtt.setBounds(200, 50, 250, 100);
-        bil.setBounds(200, 100, 250, 100);
-        pay.setBounds(80, 200, 150, 50);
-        cacel.setBounds(240, 200, 150, 50);
+            GetAccName.setBounds(100,0,400,100);
+        GetBillNumber.setBounds(100, 50, 250, 100);
+        SetAmount.setBounds(100, 100, 250, 100);
+        SetBillNumber.setBounds(200, 50, 250, 100);
+        GetAmount.setBounds(200, 100, 250, 100);
+        PayButton.setBounds(80, 200, 150, 50);
+        CancelButton.setBounds(240, 200, 150, 50);
 
-        x.add(nn);
-        x.add(t1);
-        x.add(pay);
-        x.add(t2);
-        x.add(amtt);
-        x.add(bil);
-        x.add(cacel);
+        x.add(GetAccName);
+        x.add(GetBillNumber);
+        x.add(PayButton);
+        x.add(SetAmount);
+        x.add(SetBillNumber);
+        x.add(GetAmount);
+        x.add(CancelButton);
         MainFrame.add(x);
         MainFrame.add(xx2);
         MainFrame.add(xx);
@@ -545,16 +546,18 @@ class GUI {
                 ConfirmButton.setVisible(false);
                 CancelButton.setVisible(false);
                 GetAmountLabel.setVisible(false);
-                tran = (LocalDateTime.now()) + "\n Withdraw Cash Rs." + DeductedAmount + "/-" + "\n" + "-------------------------------\n" + tran;
+                Transfer = (LocalDateTime.now()) + "\n Withdraw Cash Rs." + DeductedAmount + "/-" + "\n" + "-------------------------------\n" + Transfer;
                 try {
                     Statement();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
-                GetStatement.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                Message2.setText("Thank you Come Again...!");
-                Confirmed.setText("exit");
-                Confirmed.addActionListener(e1 -> System.exit(0));
+                Panel3.setVisible(true);
+                Panel1.setVisible(true);
+                //GetStatement.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                //Message2.setText("Thank you Come Again...!");
+                //Confirmed.setText("exit");
+                //Confirmed.addActionListener(e1 -> System.exit(0));
             } else {
                 JOptionPane.showMessageDialog(MainFrame, "Insufficient Amount");
             }});
@@ -572,7 +575,7 @@ class GUI {
 
         Confirmed.addActionListener(e -> {
             Panel3.setVisible(true);
-            tran = (LocalDateTime.now()) + "\n Withdraw Cash Rs." + DeductedAmount + "/-" + "\n" + "-------------------------------\n" + tran;
+            Transfer = (LocalDateTime.now()) + "\n Withdraw Cash Rs." + DeductedAmount + "/-" + "\n" + "-------------------------------\n" + Transfer;
             try {
                 Statement();
             } catch (SQLException throwables) {
@@ -596,7 +599,7 @@ class GUI {
 
    void transfer() throws SQLException {
 
-       ////////
+
 
 
 
@@ -690,9 +693,12 @@ class GUI {
                                        GetAccNo.setVisible(false);
                                        GetAccNumber2.setVisible(false);
                                 JOptionPane.showMessageDialog(MainFrame, "Transeferred Rs."+ Definition.Amount +"/- From "+ AccountName +" TO "+ AccName1 );
-                                       Cancel.setText("Exit");
+                                                Panel3.setVisible(true);
+                                                Panel1.setVisible(true);
                                    }
                                     else{ JOptionPane.showMessageDialog(MainFrame, "Insufficient Funds...!");
+                                                Panel3.setVisible(true);
+                                                Panel1.setVisible(true);
 }
                                    });
                                } else {
