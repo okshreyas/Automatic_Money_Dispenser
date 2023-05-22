@@ -142,6 +142,8 @@ class GUI {
     }
 
     private void focus() {
+
+        //ButtonFocusPainted
         B0.setFocusPainted(false);
         B1.setFocusPainted(false);
         B2.setFocusPainted(false);
